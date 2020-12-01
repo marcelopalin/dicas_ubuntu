@@ -1,0 +1,30 @@
+# This is Git's per-user configuration file.
+[include]
+  path = .gituser-default
+[includeIf "gitdir:~/work/"]
+  path = .gituser-work
+[alias]
+	c = !git add --all && git commit -m
+	s = !git status -s
+	l = log --graph --decorate --date-order --date=local --date=format:'%y-%M-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cgreen(%cd) %C(auto)%d %C(bold blue)<%an>%Creset'  --max-count=10 --abbrev-commit
+	lall = log --graph --decorate --date-order --date=local --date=format:'%y-%M-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cgreen(%cd) %C(auto)%d %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[core]
+	autocrlf = input
+	editor = code --wait
+[user]
+	name = Marcelo Palin
+	email = email@work.com
+# Add this to you gitconfig
+# Comment: Start of "Extra Block"
+# Comment: This is to unlock VSCode as your git diff and git merge tool
+[merge]
+    tool = vscode
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+# VSCode Difftool
+## End of extra block
