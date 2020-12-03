@@ -1,0 +1,5 @@
+# ABRIR O EXPLORER DE DENTRO DO WSL2 TERMINAL
+
+```
+explorer.exe .
+```
