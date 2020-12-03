@@ -1,4 +1,4 @@
-# COMO RESOLVER
+# 1. COMO RESOLVER
 
 Meu computador possui uma placa de vídeo:
 

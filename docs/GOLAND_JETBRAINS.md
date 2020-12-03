@@ -1,10 +1,12 @@
-# COMO INSTALAR NO UBUNTU
+# 1. COMO INSTALAR NO UBUNTU
+
+Versão I de instalação:
 
 ```
 sudo snap install goland --classic
 ```
 
-Ou manualmente
+## 1.1. Versão II: manualmente
 
 https://www.jetbrains.com/help/go/installation-guide.html
 
