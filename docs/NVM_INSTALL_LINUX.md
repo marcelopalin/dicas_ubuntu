@@ -3,7 +3,7 @@
 https://github.com/nvm-sh/nvm
 
 
-## Instalação Manual
+## 1.1. Instalação Manual
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
@@ -21,13 +21,29 @@ Verifique:
 nvm ls-remote
 ```
 
-Instale o Node:
+Instale o Node 12.19.1 LTS
 
 ```
-
+nvm install 12.19.1
 ```
 
-## Instalação por Ansible
+
+## 1.2. Alternando a versão do Node instalado
+
+```
+nvm use 12.18.3
+node --version
+v12.18.3
+```
+
+## 1.3. DEIXE DEFINITIVO
+
+```
+nvm alias default v12.18.3
+default -> v12.18.3
+```
+
+## 1.4. Instalação por Ansible
 
 Podemos usar o [Ansible](docs/ANSIBLE_AUTOMACAO.md)
 
@@ -116,19 +132,4 @@ Installing npm v6.13.4...
 Installation complete. If you want to use this version, type
 
 nvm use 12.18.3
-```
-
-## 2.2. EXECUTE O QUE ELE PEDIU
-
-```
-nvm use 12.18.3
-node --version
-v12.18.3
-```
-
-## 2.3. DEIXE DEFINITIVO
-
-```
-nvm alias default v12.18.3
-default -> v12.18.3
 ```

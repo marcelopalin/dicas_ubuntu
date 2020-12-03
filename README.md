@@ -42,4 +42,7 @@ Tenho utilizado o Terminal do Windows que pode ser baixado na loja do próprio w
 ## Como instalar e utilizar o NVM no Linux
 
 [Leia](docs/NVM_INSTALL_WINDOWS.md)
+## Como instalar o PIPENV
+
+[Leia](docs/PIPENV_PYTHON.md)
 
