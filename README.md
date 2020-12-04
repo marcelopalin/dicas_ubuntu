@@ -45,4 +45,10 @@ Tenho utilizado o Terminal do Windows que pode ser baixado na loja do próprio w
 ## Como instalar o PIPENV
 
 [Leia](docs/PIPENV_PYTHON.md)
+## Configurando o Pre-commit
+
+[Leia](docs/PRE-COMMIT.md)
+## Configurando NGINX
+
+[Leia](docs/NGINX.md)
 

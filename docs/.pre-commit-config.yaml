@@ -1,0 +1,97 @@
+# pre-commit hooks require a user to have installed `pre-commit`:
+#   $ pipenv install pre-commit --dev
+# Then install the hooks within the repo:
+#   $ cd /PATH/TO/base-python3 (or whatever your package is located)
+#   $ pre-commit install
+# You only need to run the `install` once per repo
+
+# note that you can update the `sha` versions in this file automatically with the command
+# `pre-commit autoupdate`
+repos:
+-   repo: https://github.com/ambv/black
+    rev: 20.8b1
+    hooks:
+    - id: black
+      language_version: python3.8
+
+-   repo: https://github.com/pycqa/isort
+    rev: 5.6.4
+    hooks:
+    -  id: isort
+
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+    - id: flake8
+
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.4
+    hooks:
+    - id: autopep8
+      name: autopep8-default
+      entry: autopep8
+      language: python
+      'types': [python]
+      args: ["-i"]
+      require_serial: false
+      additional_dependencies: []
+      exclude: .*/tests/.*
+
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.5.4
+    hooks:
+    - id: autopep8
+      name: autopep8-unit-tests
+      entry: autopep8
+      language: python
+      'types': [python]
+      args: ["-i", "--ignore=E226,E24,W50,W690,E402"]
+
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    rev: v3.3.0
+    hooks:
+    -   id: trailing-whitespace
+    # ensures files are either empty or end with a blank line
+    -   id: end-of-file-fixer
+    -   id: mixed-line-ending
+        args: ['--fix=lf']
+        description: Forces to replace line ending by the UNIX 'lf' character.
+    # valid python file
+    -   id: check-ast
+    # Add # -*- coding: utf-8 -*- to the top of python files.
+    -   id: fix-encoding-pragma
+        args: ['--remove']
+    # fix requirements.txt
+    # Sorts entries in requirements.txt and removes incorrect pkg-resources==0.0.0
+    -   id: requirements-txt-fixer
+    # Limitando o tamanho de arquivos
+    - id: check-added-large-files
+      args: ['--maxkb=1024']
+    - id: check-yaml
+    # Check for debugger imports and py37+ `breakpoint()` calls in python source
+    - id: debug-statements
+    # Check for files that contain merge conflict strings.
+    - id: check-merge-conflict
+    # Checks a common error of defining a docstring after code.
+    - id: check-docstring-first
+
+- repo: https://github.com/myint/docformatter
+  rev: v1.3.1
+  hooks:
+    - id: docformatter
+      args: [--in-place]
+
+# -   repo: local
+#     hooks:
+#       - id: pytest
+#         name: Check pytest unit tests pass
+#         entry: pipenv run pytest
+#         pass_filenames: false
+#         language: system
+#         types: [python]
+#       - id: mypy
+#         name: Check mypy static types match
+#         entry: pipenv run mypy python_starter --ignore-missing-imports
+#         pass_filenames: false
+#         language: system
+#         types: [python]
