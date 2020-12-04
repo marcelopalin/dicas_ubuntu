@@ -7,8 +7,48 @@ sudo /etc/init.d/nginx start
 sudo /etc/init.d/nginx status
 ```
 
-Dentro de C:\Windows\System32\drivers\etc edite o arquivo hosts
-e coloque o IP da máquina WSL2 e um apelido, exemplo:
 
-172.30.125.207 wsl.local
+# Acessando o servidor WSL2
 
+https://docs.microsoft.com/pt-br/windows/wsl/wsl-config#configure-per-distro-launch-settings-with-wslconf
+
+Eu criei o arquivo **wsl.conf** dentro do diretório /etc do linux wsl2:
+
+```ini
+# Enable extra metadata options by default
+[automount]
+enabled = true
+root = /windir/
+options = "metadata,umask=22,fmask=11"
+mountFsTab = false
+
+# Enable DNS – even though these are turned on by default, we'll specify here just to be explicit.
+[network]
+generateHosts = true
+generateResolvConf = true
+```
+
+# Permissões
+
+Crie o usuário ubuntu:
+
+```
+sudo adduser ubuntu
+```
+
+Coloque ele no grupo www-data:
+
+```
+sudo usermod -aG www-data ubuntu
+```
+
+```
+sudo chown -R ubuntu:www-data /var/www/html
+```
+
+
+Adicionando meu usuário ao grupo sudo:
+
+```
+sudo usermod -aG sudo mpi
+```

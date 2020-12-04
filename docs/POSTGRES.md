@@ -81,14 +81,14 @@ postgres=#
 
 A partir daí, você está livre para interagir com o sistema de gerenciamento de banco de dados conforme necessário.
 
-# Saia do prompt do PostgreSQL digitando:
+# 4. Saia do prompt do PostgreSQL digitando:
 
 ```
 \q
 ```
 Isso o levará de volta ao postgres prompt de comando do Linux.
 
-# Acessando o prompt em um único comando
+# 5. Acessando o prompt em um único comando
 
 ```
 sudo -u postgres psql
@@ -97,14 +97,62 @@ sudo -u postgres psql
 Veja que isto exigirá sua senha de administrador do linux.
 
 
-# 4. Criar uma senha
+# 6. Criar usuario e senha
 
 ```
-sudo su postgres -c psql postgres
+sudo -u postgres psql
+postgres=# create database mydb;
+postgres=# create user myuser with encrypted password 'mypass';
+postgres=# grant all privileges on database mydb to myuser;
 ```
 
-Quando o console do PostgreSQL abrir, rode:
+
+# 7. Criar um banco de dados pelo terminal
 
 ```
-ALTER USER postgres WITH PASSWORD 'sua_senha';
+createdb -U username -E utf8 dbname -h localhost
+
+```
+
+# 8. Criar um banco de dados no console do PostgreSQL (psql)
+
+```
+create database dbname with owner=postgres encoding='utf8';
+```
+
+# 9. Renomear um banco de dados
+
+```
+alter database "old_name" rename to "new_name";
+```
+
+# 10. Apagar um banco de dados
+
+```
+drop database dbname;
+```
+# 11. Dump (backup) de um banco de dados
+
+```
+pg_dump dbname -h localhost -U postgres > backup.sql
+```
+
+# 12. Restauração de um banco de dados (a partir de um arquivo SQL)
+
+```
+psql dbname -h localhost -U postgres < backup.sql
+```
+
+# 13. Dump (backup) dos usuários de um banco de dados
+
+```
+pg_dumpall -g -U postgres -h localhost > users.sql
+```
+
+# 14. Comandos especiais em queries SQL
+
+Data:
+
+```
+select (current_date + integer '7') as nome_campo;
 ```
