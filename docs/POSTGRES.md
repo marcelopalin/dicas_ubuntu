@@ -3,7 +3,44 @@ O PostgreSQL, ou Postgres, é um sistema de gerenciamento de banco de dados RELA
 É uma escolha popular para muitos projetos pequenos e grandes e tem a vantagem de ser compatível com os padrões e ter muitos recursos avançados, 
 como transações confiáveis ​​e simultaneidade **SEM BLOQUEIOS DE LEITURA**.
 
-Resumo
+## Resumo da Instalação do Postgresql 11
+
+Before adding repository content to your Ubuntu 20.04/18.04/16.04 system, you need to import the repository signing key:
+
+```
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+```
+After importing GPG key, add repository contents to your Ubuntu 20.04/18.04/16.04 system:
+
+```
+RELEASE=$(lsb_release -cs)
+echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list
+
+```
+sudo apt update
+sudo apt -y install postgresql-11
+sudo /etc/init.d/postgresql start
+sudo netstat -plunt | grep postgres
+sudo -u postgres psql
+
+sudo locale-gen pt_BR.UTF-8
+sudo dpkg-reconfigure locales
+sudo update-locale LANG=pt_BR.UTF-8
+
+postgres=# create user myuser with encrypted password '@myuserpass';
+postgres=# grant all privileges on database myuser to myuser;
+
+GRANT ALL ON ALL TABLES IN SCHEMA public TO myuser;
+GRANT ALL ON ALL TABLES IN SCHEMA authentication TO myuser;
+
+## Não funcionou
+
+CREATE DATABASE "mydb" WITH OWNER "myuser" ENCODING 'UTF8' LC_COLLATE = 'pt_BR.UTF-8' LC_CTYPE = 'pt_BR.UTF-8' TEMPLATE template0;
+
+## funcionou
+CREATE DATABASE "mydb" WITH OWNER "myuser" TEMPLATE template0;
+
+## Resumo da instalação do Postgresql 12
 
 ```
 sudo apt update
@@ -12,9 +49,9 @@ sudo systemctl enable postgresql
 sudo service postgresql status
 sudo netstat -plunt | grep postgres
 
-sudo -i -u postgres
-postgres@DESKTOP-4DUQ19F:~$ (entrou no prompt do postgres com o usuário padrão chamado postgres)
+sudo -u postgres psql
 ```
+
 
 
 # 1. Etapa 1 - Instalação do PostgreSQL
@@ -42,6 +79,7 @@ Para habilitar a inicialização do serviço do Postgres:
 
 ```
 sudo systemctl enable postgresql
+sudo /etc/init.d/postgresql start
 ```
 
 Para verificar o status:
@@ -156,3 +194,36 @@ Data:
 ```
 select (current_date + integer '7') as nome_campo;
 ```
+
+# How to Uninstall Postgresql
+
+You can use the apt-get command to completely remove PostgreSQL on a Debian-based distribution of Linux such as Linux Mint or Ubuntu:
+
+```
+sudo apt-get --purge remove postgresql
+sudo apt-get purge postgresql*
+sudo apt-get --purge remove postgresql postgresql-doc postgresql-common
+```
+
+Grep for all PostgreSQL packages in Debian Linux
+You can use the dpkg command for managing Debian packages, in conjunction with grep, to search for all the package names installed that contain the sub-string postgres. An example of this command is shown below:
+
+```
+dpkg -l | grep postgres
+```
+
+Finally, make sure to use the APT-GET repository’s --purge remove command, followed by the postgres package name. This command will remove the package and purge all the data associated with it:
+
+
+sudo apt-get --purge remove {POSTGRESS-PACKAGE NAME}
+
+Remove all of the PostgreSQL data and directories
+Use the rm command with the -rf options to recursively remove all of the directories and data for the postgresql packages:
+
+
+```
+sudo rm -rf /var/lib/postgresql/
+sudo rm -rf /var/log/postgresql/
+sudo rm -rf /etc/postgresql/
+```
+
