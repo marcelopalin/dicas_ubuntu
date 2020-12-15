@@ -1,10 +1,10 @@
-# PRE COMMIT
+# 1. PRE COMMIT
 
 https://pre-commit.com/
 
 https://ljvmiranda921.github.io/notebook/2018/06/21/precommits-using-black-and-flake8/
 
-# Automate Python workflow using pre-commits: black and flake8
+# 2. Automate Python workflow using pre-commits: black and flake8
 
 Antes de enviar meus arquivos Python testados, formate meu código com black e verifique minha conformidade com o PEP8 usando Flake8. Se tudo passar, o commit é feito. Caso contrário, realizo as edições necessárias e executo commit novamente. Menos tempo é gasto na formatação do código para que eu possa me concentrar mais na lógica do código.
 
@@ -22,7 +22,7 @@ Uma boa prática, eu aprendi sobre Git Hooks https://git-scm.com/book/gr/v2, esp
 
 Discutiremos primeiro a pre-commit estrutura e, em seguida, adicionarei os componentes um por um: primeiro é black e depois flake8. Vou mostrar os dotfiles presentes em meu projeto, então fique à vontade para adotá-los no seu!
 
-## Pré-commit
+## 2.1. Pré-commit
 
 Podemos executar arquivos shell tudo o que quisermos para ditar como nosso processo de pré-confirmação será, mas esta estrutura de pré-confirmação escrita em Python nos ajudou. Ele ainda vem com um conjunto de ganchos pré-consolidados fora da caixa (baterias incluídas!). Para adotar pre-commit em nosso sistema, simplesmente realizamos as seguintes ações:
 
@@ -59,7 +59,7 @@ repos:
     - id: flake8
 ```
 
-# O formatador de código Black
+# 3. O formatador de código Black
 
 O formatador de código Black em Python é uma ferramenta opinativa que formata seu código da melhor maneira possível. Você pode verificar suas decisões de design no próprio repositório. Algumas decisões de formatação notáveis, em minha opinião:
 
@@ -93,7 +93,7 @@ exclude = '''
 Se você não é fã do preto, sempre existe autopep8 - um formatador mais fiel ao PEP8. Boa coisa, o framework de pré-commit já tem um gancho nesta ferramenta, então não há necessidade de fonte de outro repositório.
 
 
-# Flake8 Checker
+# 4. Flake8 Checker
 
 Flake8 é uma ferramenta poderosa que verifica a conformidade do nosso código com PEP8. Para que o preto funcione bem com o flake8 (ou evite que ele emita vários erros e avisos), precisamos listar alguns códigos de erro a serem ignorados. Você pode verificar minha .flake8 configuração abaixo:
 

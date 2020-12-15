@@ -38,7 +38,7 @@ GRANT ALL ON ALL TABLES IN SCHEMA authentication TO myuser;
 CREATE DATABASE "mydb" WITH OWNER "myuser" ENCODING 'UTF8' LC_COLLATE = 'pt_BR.UTF-8' LC_CTYPE = 'pt_BR.UTF-8' TEMPLATE template0;
 
 ## funcionou
-CREATE DATABASE "mydb" WITH OWNER "myuser" TEMPLATE template0;
+CREATE DATABASE "site-sanic" WITH OWNER "ampere" ENCODING 'UTF8' TEMPLATE template0;
 
 ## Resumo da instalação do Postgresql 12
 
