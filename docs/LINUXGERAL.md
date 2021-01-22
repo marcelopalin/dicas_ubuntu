@@ -42,18 +42,7 @@ Tecla: PrintScr
 
 # 4. INSTALANDO YARN NO UBUNTU 18
 
-https://vitux.com/how-to-install-yarn-npm-client-on-ubuntu-and-manage-dependencies-through-it/
-
-```bash
-sudo apt install curl
-```
-
-```bash
-sudo curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-sudo sh -c "echo 'deb https://dl.yarnpkg.com/debian/ stable main' >> /etc/apt/sources.list"
-```
-
-Caso já tenho o Node instalado no Ubuntu 20, faça:
+Tenha o Node instalado no Ubuntu 20, faça:
 
 
 ```bash
