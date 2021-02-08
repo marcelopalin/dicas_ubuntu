@@ -171,6 +171,35 @@ drop database dbname;
 ```
 # 11. Dump (backup) de um banco de dados
 
+Dicas
+https://gist.github.com/brock/7a7a70300096632cec30
+
+
+## Fazendo o Backup e Compactando ao mesmo tempo. Nível de compressão 9
+
+pg_dump has built-in compression 
+
+
+```
+sudo -u postgres pg_dump database -Z 9 > database.sql.gz
+```
+
+```
+pg_dump -h localhost -U user -d site | gzip -9 > site.dump.gz
+```
+
+Não testado, mas pode fazer o backup já transferindo:
+
+```
+pg_dump -C -h localhost -U user -d sitedb -W | gzip -9 | ssh user@host.domain.com "cat - > /home/ubuntu/site-dump.sql.gz
+```
+
+No caso configurado o apelido do servidor e acesso sem senha então ficaria:
+
+```
+pg_dump -C -h localhost -U user -d mysite -W | gzip -c | ssh apelidoMaquina "cat -> /home/ubuntu/site-dump.sql.gz
+```
+
 ```
 pg_dump dbname -h localhost -U postgres > backup.sql
 ```
