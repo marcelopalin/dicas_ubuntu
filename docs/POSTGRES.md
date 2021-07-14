@@ -256,3 +256,22 @@ sudo rm -rf /var/log/postgresql/
 sudo rm -rf /etc/postgresql/
 ```
 
+# Python Conexão
+
+```
+sudo apt install libpq-dev python3-dev
+```
+
+```
+python3 -m venv .venv
+```
+
+```
+pip install psycopg2
+```
+
+Caso dê problema instale:
+
+```
+pip install psycopg2-binary
+```

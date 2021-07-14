@@ -1,0 +1,10 @@
+[user]
+	name = Marcelo Palin
+	email = email@pessoal.com
+[core]
+	sshCommand = "ssh -i ~/.ssh/id_rsa_pessoal"
+	editor = code --wait
+[alias]
+	c = !git add --all && git commit -m
+	s = !git status -s
+	l = log --graph --decorate --date-order --date=local --date=format:'%y-%M-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cgreen(%cd) %C(auto)%d %C(bold blue)<%an>%Creset'  --max-count=10 --abbrev-commit
